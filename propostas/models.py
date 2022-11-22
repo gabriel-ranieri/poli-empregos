@@ -7,6 +7,7 @@ class Propostas(models.Model):
     descricao = models.TextField() #descricao = descricao
     logo_proposta = models.URLField(max_length=200, null=True) #logo_proposta = logo_proposta
     n_vagas = models.IntegerField() #numero de vagas disponíveis
+    data_pub = models.DateTimeField()
 
     def __str__(self):
         return f'{self.name} ({self.descricao})'

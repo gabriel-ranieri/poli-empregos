@@ -8,4 +8,6 @@ urlpatterns = [
     path('search/', views.search_propostas, name='search'),
     path('create/', views.create_propostas, name='create'),
     path('<int:propostas_id>/', views.detail_propostas, name='detail'),
+    path('update/<int:propostas_id>/', views.update_propostas, name='update'),
+    path('delete/<int:propostas_id>/', views.delete_propostas, name='delete'),
 ]

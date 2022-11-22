@@ -12,6 +12,9 @@
     <ul>
         <li>Descrição da Proposta: {{ propostas.descricao }} </li>
         <li>Número de vagas: {{ propostas.n_vagas }} </li>
+        <li>Data da Publicação: {{ propostas.data_pub }} </li>
+        <li><a href="{% url 'propostas:update' propostas.id %}">Editar</a></li>
+        <li><a href="{% url 'propostas:delete' propostas.id %}">Apagar</a></li>
     </ul>
 </section>
 

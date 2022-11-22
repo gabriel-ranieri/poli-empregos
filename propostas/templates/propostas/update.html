@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Atualizar Dados da Proposta {{ propostas.name }}</h2>
+<form method="POST" action="{% url 'propostas:update' propostas.id%}">
+    {% csrf_token %}
+    <p>
+        <label for="id_name">Título:</label>
+        <input type="text" name="name" id="id_name" value="{{ propostas.name }}" />
+    </p>
+    <p>
+        <label for=" id_descricao">Descrição:</label>
+        <input type="text" name="descricao" id="id_descricao" value="{{ propostas.descricao }}" />
+    </p>
+    <p>
+        <label for=" id_logo_proposta">URL da logo da Proposta:</label>
+        <input type="url" name="logo_proposta" id="id_logo_proposta" value="{{propostas.logo_proposta}}" />
+    </p>
+    <button type="submit">Atualizar</button>
+</form>
+
+{% endblock content %}

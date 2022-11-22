@@ -30,13 +30,40 @@ def create_propostas(request):
         propostas_descricao = request.POST['descricao']
         propostas_logo_proposta = request.POST['logo_proposta']
         propostas_n_vagas = request.POST['n_vagas']
+        propostas_data_pub = request.POST['data_pub']
         propostas = Propostas(name=propostas_name,
                       descricao=propostas_descricao,
                       logo_proposta=propostas_logo_proposta,
-                      n_vagas=propostas_n_vagas)
+                      n_vagas=propostas_n_vagas,
+                      data_pub=propostas_data_pub)
         propostas.save()
         return HttpResponseRedirect(
             reverse('propostas:detail', args=(propostas.id, )))
     else:
         return render(request, 'propostas/create.html', {})
+
+def update_propostas(request, propostas_id):
+    propostas = get_object_or_404(Propostas, pk=propostas_id)
+
+    if request.method == "POST":
+        propostas.name = request.POST['name']
+        propostas.descricao = request.POST['descricao']
+        propostas_logo_proposta = request.POST['logo_proposta']
+        propostas.save()
+        return HttpResponseRedirect(
+            reverse('propostas:detail', args=(propostas.id, )))
+
+    context = {'propostas': propostas}
+    return render(request, 'propostas/update.html', context)
+
+
+def delete_propostas(request, propostas_id):
+    propostas = get_object_or_404(Propostas, pk=propostas_id)
+
+    if request.method == "POST":
+        propostas.delete()
+        return HttpResponseRedirect(reverse('propostas:index'))
+
+    context = {'propostas': propostas}
+    return render(request, 'propostas/delete.html', context)
 # Create your views here.
