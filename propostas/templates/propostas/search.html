@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Busca de Propostas por Nome</h2>
+<form action="{% url 'propostas:search' %}">
+    <p>
+        <label for="id_query">Título:</label>
+        <input type="text" name="query" id="id_query" />
+    </p>
+    <button type="submit">Buscar</button>
+</form>
+
+
+<h2>Resultado da Busca</h2>
+{% if propostas_list %}
+<section class="lista-de-cards">
+    {% for propostas in propostas_list %}
+    <article class="card">
+        <img src="{{ propostas.logo_proposta }}" alt="Poster da proposta {{ propostas.name}}">
+        <p>{{ propostas.name }} ({{ propostas.descricao }})</p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrado nenhuma proposta para a busca.</p>
+{% endif %}
+
+{% endblock content %}

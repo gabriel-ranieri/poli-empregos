@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Inserir Nova Proposta</h2>
+<form method="POST" action="{% url 'propostas:create' %}">
+    {% csrf_token %}
+    <p>
+        <label for="id_name">Título:</label>
+        <input type="text" name="name" id="id_name" />
+    </p>
+    <p>
+        <label for="id_descricao">Texto:</label>
+        <input type="text" name="descricao" id="id_descricao" />
+    </p>
+    <p>
+        <label for="id_logo_proposta">Logo da Proposta:</label>
+        <input type="url" name="logo_proposta" id="id_logo_proposta" />
+    </p>
+    <p>
+        <label for="id_n_vagas">Número de Vagas:</label>
+        <input type="number" name="n_vagas" id="id_n_vagas" />
+    </p>
+    <button type="submit">Criar</button>
+</form>
+
+{% endblock content %}

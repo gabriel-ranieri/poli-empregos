@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Todas as Propostas</h2>
+<section>
+    <p>Muitos resultados? <a href="{% url 'propostas:search' %}">Buscar Propostas</a></p>
+    <p>Gostaria de criar uma nova proposta? <a href="{% url 'propostas:create' %}">Adicionar Nova Proposta</a></p>
+</section>
+{% if propostas_list %}
+<section class="lista-de-cards">
+    {% for propostas in propostas_list %}
+    <article class="card">
+        <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
+            alt="Poster da Proposta {{ propostas.name}}"></a>
+        <p>{{ propostas.name }}</p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrada nenhuma proposta.</p>
+{% endif %}
+
+{% endblock content %}

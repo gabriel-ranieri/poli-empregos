@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ propostas.name }} ({{ propostas.descricao }}
+{% endblock title %}
+
+{% block content %}
+<h2>{{ propostas.name }}</h2>
+
+<section class="dados-de-proposta">
+    <img src="{{ propostas.logo_proposta }}" alt="Poster da proposta {{ propostas.name}}">
+    <ul>
+        <li>Descrição da Proposta: {{ propostas.descricao }} </li>
+        <li>Número de vagas: {{ propostas.n_vagas }} </li>
+    </ul>
+</section>
+
+{% endblock content %}
