@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{ propostas.name }} ({{ propostas.descricao }}
+{{ propostas.name }}
 {% endblock title %}
 
 {% block content %}
@@ -18,5 +18,21 @@
     </ul>
 </section>
 <button type="submit">Inscrever-se</button>
+
+<hr>
+<h2>Outras Propostas</h2>
+{% if propostas_list %}
+<section class="lista-de-cards">
+    {% for propostas in propostas_list %}
+    <article class="small-card">
+        <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
+            alt="Poster da Proposta {{ propostas.name}}"></a>
+        <p>{{ propostas.name }}</p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrada nenhuma proposta.</p>
+{% endif %}
 
 {% endblock content %}

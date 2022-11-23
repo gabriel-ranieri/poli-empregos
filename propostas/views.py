@@ -49,6 +49,7 @@ def update_propostas(request, propostas_id):
         propostas.name = request.POST['name']
         propostas.descricao = request.POST['descricao']
         propostas_logo_proposta = request.POST['logo_proposta']
+        propostas_n_vagas = request.POST['n_vagas']
         propostas.save()
         return HttpResponseRedirect(
             reverse('propostas:detail', args=(propostas.id, )))
