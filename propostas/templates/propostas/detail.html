@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ propostas.name }}
+{% endblock title %}
+
+{% block content %}
+<h2>{{ propostas.name }}</h2>
+
+<section class="dados-de-proposta">
+    <img src="{{ propostas.logo_proposta }}" alt="Poster da proposta {{ propostas.name}}">
+    <ul>
+        <li>Descrição da Proposta: {{ propostas.descricao }} </li>
+        <li>Número de vagas: {{ propostas.n_vagas }} </li>
+        <li>Data da Publicação: {{ propostas.data_pub }} </li>
+        <li><a href="{% url 'propostas:update' propostas.id %}">Editar</a></li>
+        <li><a href="{% url 'propostas:delete' propostas.id %}">Apagar</a></li>
+    </ul>
+</section>
+<button type="submit">Inscrever-se</button>
+
+<hr>
+<h2>Outras Propostas</h2>
+{% if propostas_list %}
+<section class="lista-de-cards">
+    {% for propostas in propostas_list %}
+    <article class="small-card">
+        <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
+            alt="Poster da Proposta {{ propostas.name}}"></a>
+        <p>{{ propostas.name }}</p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrada nenhuma proposta.</p>
+{% endif %}
+
+{% endblock content %}
