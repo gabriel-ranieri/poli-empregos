@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Busca de Notícias por Nome</h2>
+<form action="{% url 'noticias:search' %}">
+    <p>
+        <label for="id_query">Título:</label>
+        <input type="text" name="query" id="id_query" />
+    </p>
+    <button type="submit">Buscar</button>
+</form>
+
+
+<h2>Resultado da Busca</h2>
+{% if noticia_list %}
+<section class="lista-de-cards">
+    {% for noticia in noticia_list %}
+    <article class="card">
+        <img src="{{ noticia.poster_url }}" alt="Poster da Notícia {{ noticia.name}}">
+        <p>{{ noticia.name }} ({{ noticia.release_date }})</p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrado nenhuma notícia para a busca.</p>
+{% endif %}
+
+{% endblock content %}

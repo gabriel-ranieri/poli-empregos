@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'staticpages.apps.StaticpagesConfig',
     'propostas.apps.PropostasConfig',
+    'noticias.apps.NoticiasConfig',
 ]
 
 MIDDLEWARE = [

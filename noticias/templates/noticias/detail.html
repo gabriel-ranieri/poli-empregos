@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ noticia.name }} ({{ noticia.release_date | date}}
+{% endblock title %}
+
+{% block content %}
+<h2>Detalhes da Notícia {{ noticia.name }} ({{ noticia.release_date | date }})</h2>
+
+<section class="dados-de-filme">
+    <img src="{{ noticia.poster_url }}" alt="Poster da notícia {{ noticia.name}}">
+    <ul>
+        <li>Nome: {{ noticia.name }}</li>
+        <li>Data de publicação: {{ noticia.release_date | date }} </li>
+        <li><a href="{% url 'noticias:update' noticia.id %}">Editar</a></li>
+        <li><a href="{% url 'noticias:delete' noticia.id %}">Apagar</a></li>
+    </ul>
+</section>
+
+{% endblock content %}
