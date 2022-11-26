@@ -1,2 +1,2 @@
-web: gunicorn poli-empregos.wsgi
+web: gunicorn poliempregos.wsgi
 release: python manage.py migrate
