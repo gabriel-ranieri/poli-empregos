@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+Buscar notícia
+{% endblock title %}
+
 {% block content %}
 <h2>Busca de Notícias por Nome</h2>
 <form action="{% url 'noticias:search' %}">

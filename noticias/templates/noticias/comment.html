@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Comentar notícia
+{% endblock title %}
+
+{% block content %}
+<h2>Comentar a notícia {{ noticia.name }} ({{ noticia.release_date | date }})</h2>
+
+<form action="{% url 'noticias:comment' noticia.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Postar comentário</button>
+</form>
+
+<p><a href="{% url 'noticias:detail' noticia.id %}">Voltar para a página da notícia</a></p>
+{% endblock content %}

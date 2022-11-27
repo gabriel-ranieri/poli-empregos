@@ -15,6 +15,33 @@
         <li><a href="{% url 'noticias:update' noticia.id %}">Editar</a></li>
         <li><a href="{% url 'noticias:delete' noticia.id %}">Apagar</a></li>
     </ul>
+    <p> {{ noticia.descricao }}</p>
+</section>
+
+<hr>
+
+<section>
+    <header>
+        <h3>Comentários</h3>
+    </header>
+    <ul>
+        {% if noticia.comment_set.all %}
+            {% for comment in noticia.comment_set.all %}
+                <figure>
+                    <blockquote>
+                        "{{ comment.text }}"
+                    </blockquote>
+                    <figcaption>—{{ comment.author }}
+                </figure>
+            {% endfor %}
+        {% else %}
+            <p>Ainda não existe nenhum comentário para esta notícia.</p>
+        {% endif %}
+    </ul>
+
+    <hr>
+
+    <a href="{% url 'noticias:comment' noticia.pk %}"><button>Faça seu comentário</button></a>
 </section>
 
 {% endblock content %}

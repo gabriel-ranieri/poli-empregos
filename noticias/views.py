@@ -4,6 +4,8 @@ from .temp_data import noticia_data
 from django.shortcuts import render, get_object_or_404
 from .models import Noticia
 from django.urls import reverse
+from .models import Noticia, Comment
+from .forms import NoticiaForm, CommentForm
 
 def detail_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
@@ -25,29 +27,44 @@ def search_noticias(request):
 
 def create_noticia(request):
     if request.method == 'POST':
-        noticia_name = request.POST['name']
-        noticia_poster_url = request.POST['poster_url']
-        noticia = Noticia(name=noticia_name,
-                      poster_url=noticia_poster_url)
-        noticia.save()
-        return HttpResponseRedirect(
-            reverse('noticias:detail', args=(noticia.id, )))
+        form = NoticiaForm(request.POST)
+        if form.is_valid():
+            noticia_name = form.cleaned_data['name']
+            noticia_descricao = form.cleaned_data['descricao']
+            noticia_poster_url = form.cleaned_data['poster_url']
+            noticia = Noticia(name=noticia_name,
+                          descricao=noticia_descricao,
+                          poster_url=noticia_poster_url)
+            noticia.save()
+            return HttpResponseRedirect(
+                reverse('noticias:detail', args=(noticia.id, )))
     else:
-        return render(request, 'noticias/create.html', {})
+        form = NoticiaForm()
+    context = {'form': form}
+    return render(request, 'noticias/create.html', context)
 
 def update_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
 
     if request.method == "POST":
-        noticia.name = request.POST['name']
-        noticia_poster_url = request.POST['poster_url']
-        noticia.save()
-        return HttpResponseRedirect(
-            reverse('noticias:detail', args=(noticia.id, )))
+        form = NoticiaForm(request.POST)
+        if form.is_valid():
+            noticia.name = form.cleaned_data['name']
+            noticia.descricao = form.cleaned_data['descricao']
+            noticia.poster_url = form.cleaned_data['poster_url']
+            noticia.save()
+            return HttpResponseRedirect(
+                reverse('noticias:detail', args=(noticia.id, )))
+    else:
+        form = NoticiaForm(
+            initial={
+                'name': noticia.name,
+                'descricao': noticia.descricao,
+                'poster_url': noticia.poster_url
+            })
 
-    context = {'noticia': noticia}
+    context = {'noticia': noticia, 'form': form}
     return render(request, 'noticias/update.html', context)
-
 
 def delete_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
@@ -58,3 +75,21 @@ def delete_noticia(request, noticia_id):
 
     context = {'noticia': noticia}
     return render(request, 'noticias/delete.html', context)
+
+def create_comment(request, noticia_id):
+    noticia = get_object_or_404(Noticia, pk=noticia_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment_author = form.cleaned_data['author']
+            comment_text = form.cleaned_data['text']
+            comment = Comment(author=comment_author,
+                            text=comment_text,
+                            comment=comment)
+            comment.save()
+            return HttpResponseRedirect(
+                reverse('noticias:detail', args=(noticia_id, )))
+    else:
+        form = CommentForm()
+    context = {'form': form, 'noticia': noticia}
+    return render(request, 'noticias/comment.html', context)

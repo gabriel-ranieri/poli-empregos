@@ -12,7 +12,6 @@ class Noticia(models.Model):
     def __str__(self):
         return f'{self.name} ({self.release_date})'
 
-
 class Comment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)

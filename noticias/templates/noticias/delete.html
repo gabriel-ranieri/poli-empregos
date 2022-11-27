@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+Deletar notícia
+{% endblock title %}
+
 {% block content %}
 <form action="{% url 'noticias:delete' noticia.id %}" method="post">
     {% csrf_token %}
