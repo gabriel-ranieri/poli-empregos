@@ -28,6 +28,8 @@
                     <li><a href="{% url 'about' %}">Sobre</a></li>
                     <li><a href="{% url 'noticias:index' %}">Notícias</a></li>
                     <li><a href="{% url 'propostas:index' %}">Pesquisa</a></li>
+                    <a href="{% url 'curriculo:list'  %}">Curriculos</a>
+
                 {% else %}
                     <li><a href="{% url 'login' %}">Log in</a></li>
                 {% endif %}

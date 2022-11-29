@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'propostas.apps.PropostasConfig',
     'noticias.apps.NoticiasConfig',
     'django_cpf_cnpj',
+    'curriculo.apps.CurriculoConfig'
 ]
 
 MIDDLEWARE = [
