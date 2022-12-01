@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if curriculo_list %}
+
+<p>Muitos resultados? <a href="{% url 'curriculo:search' %}">Buscar Curriculo</a></p>
+
+<section class="lista-de-cards">
+
+    {% for curriculo in curriculo_list %}
+
+    <article class="card">
+        <a href="{% url 'curriculo:profile' curriculo.id %}">{{ curriculo.estudante }}</a>
+
+        <p>{{ curriculo.bio }}</p>
+    </article>
+
+    {% endfor %}
+</section>
+
+{% else %}
+<p>Não foi encontrado nenhum currículo.</p>
+
+{% endif %}
+
+{% endblock content %}

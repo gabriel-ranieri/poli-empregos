@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <img src="{{ curriculo_detail.foto }}" alt="Nome de Estudante {{ curriculo_detail.estudante}}">
+        <h1>Curriculo de {{curriculo_detail.estudante}}</h1>
+    </div>
+
+    <div class="container">
+        <div class="p-5 text-white bg-dark rounded-3 container">
+            <p>Curso: {{curriculo_detail.curso}}</p>
+            <hr>
+            <p>Bio: {{curriculo_detail.bio}}</p>
+            <hr>
+            <p>Experiência Profissional: {{curriculo_detail.profissional}}</p>
+            <hr>
+            <p>Experiência Acadêmica: {{curriculo_detail.academico}}</p>
+            <hr> 
+            <p> Outras Experiência: {{curriculo_detail.experiencia}}</p>
+        </div>
+    </div>
+{% endblock %}

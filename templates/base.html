@@ -22,9 +22,18 @@
         </a>
         <nav id="navegacao-principal">
             <ul>
-                <li><a href="{% url 'about' %}">Sobre</a></li>
-                <li><a href="{% url 'noticias:index' %}">Notícias</a></li>
-                <li><a href="{% url 'propostas:index' %}">Pesquisa</a></li>
+                {% if user.is_authenticated %}
+                    <li> Logado com {{ user.username }} </li>
+                    <li><a href="{% url 'logout' %}">Log out</a></li>
+                    <li><a href="{% url 'about' %}">Sobre</a></li>
+                    <li><a href="{% url 'noticias:index' %}">Notícias</a></li>
+                    <li><a href="{% url 'propostas:index' %}">Pesquisa</a></li>
+                    <a href="{% url 'curriculo:list'  %}">Curriculos</a>
+
+                {% else %}
+                    <li><a href="{% url 'login' %}">Log in</a></li>
+                {% endif %}
+               
             </ul>
         </nav>
 
