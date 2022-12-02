@@ -1,17 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Propostas
-{% endblock title %}
-
 {% block content %}
-<h2>Todas as Propostas</h2>
-<section>
-    <p>Muitos resultados? <a href="{% url 'propostas:search' %}">Buscar Propostas</a></p>
-    {% if request.user.is_empresa == True %} 
-        <a href="{% url 'propostas:empresa_profile' user.username %}">Minhas Propostas</a>
-    {% endif %}
-</section>
+<p>Gostaria de criar uma nova proposta? <a href="{% url 'propostas:create' %}">Adicionar Nova Proposta</a></p>
 {% if propostas_list %}
 <section class="lista-de-cards">
     {% for propostas in propostas_list %}

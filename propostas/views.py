@@ -6,10 +6,19 @@ from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from .models import Propostas
 
+from user.models import User, Estudante
+
 def detail_propostas(request, propostas_id):
     propostas = get_object_or_404(Propostas, pk=propostas_id)
     context = {'propostas': propostas}
     return render(request, 'propostas/detail.html', context)
+
+
+def get_empresa_profile(request,username):
+    user = User.objects.get(username=username)
+    propostas_list = Propostas.objects.filter(empresa=user.empresa)
+    #propostas_list = Propostas.objects.get(empresa=user.empresa)
+    return render(request, 'propostas/empresa_profile.html', {"user":user, 'propostas_list': propostas_list})
 
 def list_propostas(request):
     propostas_list = Propostas.objects.all()
