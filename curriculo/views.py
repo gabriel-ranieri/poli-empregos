@@ -5,6 +5,7 @@ from django.urls import reverse, reverse_lazy
 import requests
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied
 
 from .models import Curso, Curriculo
 from .forms import CursoForm, CurriculoForm
@@ -13,11 +14,16 @@ from user.models import User, Estudante
 # CURRICULO #
 @login_required
 def curriculo_detail(request, curriculo_id):
-    #estudante = get_object_or_404(Estudante, pk=estudante_id)
-    curriculo = get_object_or_404(Curriculo, pk=curriculo_id)
-    context = {'curriculo': curriculo}
+    #estudante = request.user.estudante
+   curriculo = get_object_or_404(Curriculo, pk=curriculo_id)
+   context = {'curriculo': curriculo}
     #curriculo_detail = get_object_or_404(Curriculo, estudante=estudante)
-    return render(request, 'curriculo/profile.html', context)  #,'estudante': estudante})
+   return render(request, 'curriculo/profile.html', context)  #,'estudante': estudante})
+
+def get_user_profile(request,username):
+    user = User.objects.get(username=username)
+    curriculo = Curriculo.objects.get(estudante=user.estudante) 
+    return render(request, 'curriculo/user_profile.html', {"user":user, 'curriculo': curriculo})
 
 class CurriculoListView(generic.ListView):
     model = Curriculo
@@ -34,7 +40,11 @@ def search_curriculo(request):
 
 @permission_required('curriculo.change_curriculo')
 def update_curriculo(request, curriculo_id):
+
     curriculo = get_object_or_404(Curriculo, pk=curriculo_id)
+    #Restringir edição ao dono do curriculo.
+    if not (curriculo.estudante == request.user.estudante or request.user.is_superuser):
+        raise PermissionDenied
 
     if request.method == "POST":
 

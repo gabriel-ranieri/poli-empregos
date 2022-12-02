@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Noticia(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255) 
     release_date  = models.DateTimeField(default=timezone.now)
     descricao = models.TextField()
     poster_url = models.URLField(max_length=200, null=True)
