@@ -81,11 +81,11 @@ def create_comment(request, noticia_id):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            comment_author = form.cleaned_data['author']
+            comment_author = request.user
             comment_text = form.cleaned_data['text']
             comment = Comment(author=comment_author,
                             text=comment_text,
-                            comment=comment)
+                            noticia = noticia)
             comment.save()
             return HttpResponseRedirect(
                 reverse('noticias:detail', args=(noticia_id, )))
