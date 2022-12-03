@@ -31,7 +31,7 @@
 
     <article class="card">
 
-        <a href="{% url 'curriculo:profile' curriculo.id %}">{{ curriculo.estudante }}</a>
+        <a href="{% url 'curriculo:profile' curriculo.id %}">{{ curriculo.estudante.name }}</a>
 
         <p>{{ curriculo.bio }}</p>
 

@@ -20,15 +20,17 @@ def curriculo_detail(request, curriculo_id):
     #curriculo_detail = get_object_or_404(Curriculo, estudante=estudante)
    return render(request, 'curriculo/profile.html', context)  #,'estudante': estudante})
 
+@login_required
 def get_user_profile(request,username):
     user = User.objects.get(username=username)
     curriculo = Curriculo.objects.get(estudante=user.estudante) 
     return render(request, 'curriculo/user_profile.html', {"user":user, 'curriculo': curriculo})
 
-class CurriculoListView(generic.ListView):
+class CurriculoListView(generic.ListView,LoginRequiredMixin):
     model = Curriculo
     template_name = 'curriculo/list.html'
 
+@login_required
 def search_curriculo(request):
     context = {}
     if request.GET.get('query', False):
@@ -38,6 +40,7 @@ def search_curriculo(request):
 
     return render(request, 'curriculo/search.html', context)
 
+@login_required
 @permission_required('curriculo.change_curriculo')
 def update_curriculo(request, curriculo_id):
 

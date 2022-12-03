@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from .models import Estudante, Empresa, User
-from django_cpf_cnpj.fields import CPFField, CNPJField
 from django.contrib.auth.models import Group
 
 class EstudanteSignUpForm(UserCreationForm):

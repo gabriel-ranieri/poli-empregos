@@ -9,7 +9,12 @@ Notícias
 
 <section>
     <p>Muitos resultados? <a href="{% url 'noticias:search' %}">Buscar Notícias</a></p>
-    <p>Não encontrou a notícia? <a href="{% url 'noticias:create' %}">Adicionar Nova Notícia</a></p>
+
+    {% if not request.user.is_estudante %}
+    {% if not request.user.is_empresa %}
+        <p>Não encontrou a notícia? <a href="{% url 'noticias:create' %}">Adicionar Nova Notícia</a></p>
+    {% endif %}
+    {% endif %}
 </section>
 
 {% if noticia_list %}

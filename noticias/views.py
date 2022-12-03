@@ -6,17 +6,21 @@ from .models import Noticia
 from django.urls import reverse
 from .models import Noticia, Comment
 from .forms import NoticiaForm, CommentForm
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
 def detail_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
     context = {'noticia': noticia}
     return render(request, 'noticias/detail.html', context)
 
+@login_required
 def list_noticias(request):
     noticia_list = Noticia.objects.all()
     context = {'noticia_list': noticia_list}
     return render(request, 'noticias/index.html', context)
 
+@login_required
 def search_noticias(request):
     context = {}
     if request.GET.get('query', False):
@@ -25,6 +29,8 @@ def search_noticias(request):
         context = {"noticia_list": noticia_list}
     return render(request, 'noticias/search.html', context)
 
+@login_required
+@permission_required('noticia.create_noticia')
 def create_noticia(request):
     if request.method == 'POST':
         form = NoticiaForm(request.POST)
@@ -43,6 +49,8 @@ def create_noticia(request):
     context = {'form': form}
     return render(request, 'noticias/create.html', context)
 
+@login_required
+@permission_required('noticia.change_noticia')
 def update_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
 
@@ -66,6 +74,8 @@ def update_noticia(request, noticia_id):
     context = {'noticia': noticia, 'form': form}
     return render(request, 'noticias/update.html', context)
 
+@login_required
+@permission_required('noticia.delete_noticia')
 def delete_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
 
@@ -76,6 +86,7 @@ def delete_noticia(request, noticia_id):
     context = {'noticia': noticia}
     return render(request, 'noticias/delete.html', context)
 
+@login_required
 def create_comment(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
     if request.method == 'POST':

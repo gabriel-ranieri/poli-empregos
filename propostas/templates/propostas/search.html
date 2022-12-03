@@ -17,7 +17,7 @@
     {% for propostas in propostas_list %}
     <article class="card">
         <img src="{{ propostas.logo_proposta }}" alt="Poster da proposta {{ propostas.name}}">
-        <p>{{ propostas.name }}</p>
+        <a href="{% url 'propostas:detail' propostas.id %}">{{ propostas.name }}</a>
     </article>
     {% endfor %}
 </section>

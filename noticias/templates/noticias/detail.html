@@ -12,8 +12,12 @@
     <ul>
         <li>Nome: {{ noticia.name }}</li>
         <li>Data de publicação: {{ noticia.release_date | date }} </li>
-        <li><a href="{% url 'noticias:update' noticia.id %}">Editar</a></li>
-        <li><a href="{% url 'noticias:delete' noticia.id %}">Apagar</a></li>
+        {% if not request.user.is_estudante %}
+        {% if not request.user.is_empresa %}
+            <li><a href="{% url 'noticias:update' noticia.id %}">Editar</a></li>
+            <li><a href="{% url 'noticias:delete' noticia.id %}">Apagar</a></li>
+        {% endif %}
+        {% endif %}
     </ul>
     <p> {{ noticia.descricao }}</p>
 </section>
