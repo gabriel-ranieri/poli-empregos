@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django_cpf_cnpj.fields import CPFField, CNPJField
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
