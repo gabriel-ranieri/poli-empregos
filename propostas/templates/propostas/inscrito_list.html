@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for curriculo in i_list %}
+    <article class="card">
+        <a href="{% url 'curriculo:profile' curriculo.id %}">{{ curriculo.estudante.name }}</a>
+
+        <p>{{ curriculo.bio }}</p>
+    </article>
+{% endfor %}
+{% endblock content %}

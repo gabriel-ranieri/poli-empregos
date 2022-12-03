@@ -16,11 +16,17 @@
         {% if propostas.empresa == request.user.empresa %}
             <li><a href="{% url 'propostas:update' propostas.id %}">Editar</a></li>
             <li><a href="{% url 'propostas:delete' propostas.id %}">Apagar</a></li>
+            <li><a href="{% url 'propostas:inscrito_list' propostas.id %}">Inscritos</a></li>
         {% endif %} 
     </ul>
 </section>
-<button type="submit">Inscrever-se</button>
-
+{% if request.user.is_estudante %}
+    {% if ins %}
+        <a href="{% url 'propostas:inscrito_add' propostas.id %}">Desinscrever-se</a>
+    {% else %}
+        <a href="{% url 'propostas:inscrito_add' propostas.id %}">Inscrever-se</a>
+    {% endif %}
+{% endif %}
 <hr>
 <h2>Outras Propostas</h2>
 {% if propostas_list %}

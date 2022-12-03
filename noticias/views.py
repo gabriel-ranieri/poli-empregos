@@ -30,7 +30,7 @@ def search_noticias(request):
     return render(request, 'noticias/search.html', context)
 
 @login_required
-@permission_required('noticia.create_noticia')
+@permission_required('noticia.add_noticia')
 def create_noticia(request):
     if request.method == 'POST':
         form = NoticiaForm(request.POST)
