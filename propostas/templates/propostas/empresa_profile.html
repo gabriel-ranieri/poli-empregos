@@ -6,9 +6,8 @@
 <section class="lista-de-cards">
     {% for propostas in propostas_list %}
     <article class="card">
-        <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
-            alt="Poster da Proposta {{ propostas.name}}"></a>
-        <p>{{ propostas.name }}</p>
+        <img src="{{ propostas.logo_proposta }}"alt="Poster da Proposta {{ propostas.name}}">
+        <a href="{% url 'propostas:detail' propostas.id %}">{{ propostas.name }}</a>
     </article>
     {% endfor %}
 </section>
