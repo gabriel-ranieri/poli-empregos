@@ -6,13 +6,20 @@ from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from .models import Propostas
 from django.contrib.auth.decorators import login_required, permission_required
+from django.core.exceptions import PermissionDenied
+
 
 from user.models import User, Estudante
+from curriculo.models import Curriculo
 
 @login_required
 def detail_propostas(request, propostas_id):
     propostas = get_object_or_404(Propostas, pk=propostas_id)
-    context = {'propostas': propostas}
+    ins = bool 
+    if request.user.is_estudante:
+        if propostas.inscrito.filter(id = request.user.estudante.curriculo.id).exists():
+            ins = True
+    context = {'propostas': propostas, 'ins': ins}
     return render(request, 'propostas/detail.html', context)
 
 @login_required
@@ -38,7 +45,7 @@ def search_propostas(request):
     return render(request, 'propostas/search.html', context)
 
 @login_required
-@permission_required('propostas.create_propostas')
+@permission_required('propostas.add_propostas')
 def create_propostas(request):
     if request.method == 'POST':
         propostas_name = request.POST['name']
@@ -91,4 +98,35 @@ def delete_propostas(request, propostas_id):
 
     context = {'propostas': propostas}
     return render(request, 'propostas/delete.html', context)
+
+def inscrito_add(request, id):
+    propostas = get_object_or_404(Propostas, id = id)
+    if request.user.is_estudante:
+        if propostas.inscrito.filter(id = request.user.estudante.curriculo.id).exists():
+            propostas.inscrito.remove(request.user.estudante.curriculo)
+
+        else:
+            propostas.inscrito.add(request.user.estudante.curriculo)
+
+
+    return HttpResponseRedirect(reverse('propostas:index'))
+
+def inscrito_list(request,propostas_id):
+    propostas = get_object_or_404(Propostas, id = propostas_id)
+
+    if request.user.is_estudante:
+        raise PermissionDenied
+    else:
+        if not (request.user.is_superuser):
+            if not (propostas.empresa == request.user.empresa):
+                raise PermissionDenied
+
+    i_list = Curriculo.objects.filter(propostas = propostas_id)
+    context = {'propostas': propostas, 'i_list' : i_list}
+    return render(request, 'propostas/inscrito_list.html', context)
 # Create your views here.
+
+#class InscritoCreateView(generic.CreateView):
+   # model = Inscrito
+   # template_name = 'propostas/create_inscrito.html'
+    #success_url = reverse_lazy('propostas:inscritos')

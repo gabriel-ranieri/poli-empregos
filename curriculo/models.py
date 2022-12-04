@@ -10,7 +10,7 @@ class Curso(models.Model):
 
 class Curriculo(models.Model):
     estudante = models.OneToOneField(Estudante,on_delete=models.CASCADE)
-    curso = models.OneToOneField(Curso,on_delete=models.CASCADE,null=True)
+    curso = models.ForeignKey(Curso,on_delete=models.CASCADE,null=True)
     bio = models.TextField(null=True)
     foto = models.URLField(max_length=200, null=True)
     profissional = models.TextField(null=True)

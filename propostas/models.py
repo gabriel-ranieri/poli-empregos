@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
-from user.models import Empresa
+from user.models import Empresa, Estudante
+from curriculo.models import Curriculo
 from django.utils import timezone
 
 
@@ -11,8 +12,9 @@ class Propostas(models.Model):
     logo_proposta = models.URLField(max_length=200) #logo_proposta = logo_proposta
     n_vagas = models.IntegerField() #numero de vagas disponíveis
     data_pub = models.DateTimeField(default=timezone.now)
+    inscrito = models.ManyToManyField(Curriculo, default = None, blank = True)
 
     def __str__(self):
-        return f'{self.name} ({self.descricao})'
+        return f'{self.name}'
 
 # Create your models here.
