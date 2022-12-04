@@ -29,12 +29,12 @@
 
     {% for curriculo in curriculo_list %}
 
-    <article class="card">
-
-        <a href="{% url 'curriculo:profile' curriculo.id %}">{{ curriculo.estudante.name }}</a>
-
-        <p>{{ curriculo.bio }}</p>
-
+    <article class="curriculo-card">
+        <img class= 'retrato' src="{{ curriculo.foto }}" alt="Nome de Estudante {{ curriculo.estudante}}" width="180" height="180">
+        <div class="curriculo-text"> 
+            <a class = 'curriculo-name' href="{% url 'curriculo:profile' curriculo.id %}">{{ curriculo.estudante.name }}</a>
+            <p class = 'curriculo-bio'>{{ curriculo.bio }}</p>
+        </div>
     </article>
 
     {% endfor %}

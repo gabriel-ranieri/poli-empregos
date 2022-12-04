@@ -15,11 +15,13 @@ from curriculo.models import Curriculo
 @login_required
 def detail_propostas(request, propostas_id):
     propostas = get_object_or_404(Propostas, pk=propostas_id)
-    ins = bool 
+    ins = bool
+    context = {'propostas': propostas, 'ins': ins}
     if request.user.is_estudante:
+        curriculo = request.user.estudante.curriculo
         if propostas.inscrito.filter(id = request.user.estudante.curriculo.id).exists():
             ins = True
-    context = {'propostas': propostas, 'ins': ins}
+        context = {'propostas': propostas, 'ins': ins, 'curriculo':curriculo}
     return render(request, 'propostas/detail.html', context)
 
 @login_required
@@ -124,6 +126,19 @@ def inscrito_list(request,propostas_id):
     i_list = Curriculo.objects.filter(propostas = propostas_id)
     context = {'propostas': propostas, 'i_list' : i_list}
     return render(request, 'propostas/inscrito_list.html', context)
+
+
+def propostas_inscrito_list(request,username):
+    user = User.objects.get(username=username)
+
+    if request.user.is_empresa:
+        raise PermissionDenied
+
+    curriculo = Curriculo.objects.get(estudante=user.estudante) 
+
+    p_list = Propostas.objects.filter(inscrito = curriculo.id)
+    context = {'user':user, 'curriculo': curriculo, 'p_list' : p_list}
+    return render(request, 'propostas/inscricoes.html', context)
 # Create your views here.
 
 #class InscritoCreateView(generic.CreateView):

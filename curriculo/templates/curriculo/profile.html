@@ -4,32 +4,26 @@
 {% block head_title %}{{ curriculo.estudante }} | Django Blog{% endblock head_title %}
 
 {% block content %}
-<div class="container-fluid mt-5">
   <div class="row">
-    <div class="card col-lg-6 offset-lg-3 mb-3">
-      <div class="row">
-        {% if curriculo.foto %}
-        <img class="card-img-top col-sm-3 col-4 my-3" src="{{ curriculo.foto }}" alt="{{ curriculo.estudante }}">
-        {% else %}
-        <p>Sem foto</p>
-        {% endif %}
-        <div class="card-body col-9">
-          <h2 class="card-title my-3">{{ curriculo.estudante.name }}</h2>
-          <p class="card-text">Bio: {{ curriculo.bio }}</p>
-          <hr>
-          <p class="card-text">Curso: {{ curriculo.curso }}</p>
-          <hr>
-          <p class="card-text">Experiência Profissional: {{ curriculo.profissional }}</p>
-          <hr>
-          <p class="card-text">Experiência Acadêmica: {{ curriculo.academico }}</p>
-          <hr>
-          <p class="card-text">Outras Experiências: {{ curriculo.experiencia }}</p>
-        </div>
-        {% if curriculo.estudante == request.user.estudante %}
-            <li><a href="{% url 'curriculo:update' curriculo.id %}">Editar</a></li>
-        {% endif %}
-      </div>
+    {% if curriculo.foto %}
+      <img class="card-img-top col-sm-3 col-4 my-3" src="{{ curriculo.foto }}" alt="{{ curriculo.estudante }}" width="300" height="300">
+    {% else %}
+      <p>Sem foto</p>
+    {% endif %}
+    <div class="card-body col-9">
+      <h2 class="card-title my-3">{{ curriculo.estudante.name }}</h2>
+      <p class="card-text">Bio: {{ curriculo.bio }}</p>
+      <hr>
+      <p class="card-text">Curso: {{ curriculo.curso }}</p>
+      <hr>
+      <p class="card-text">Experiência Profissional: {{ curriculo.profissional }}</p>
+      <hr>
+      <p class="card-text">Experiência Acadêmica: {{ curriculo.academico }}</p>
+      <hr>
+      <p class="card-text">Outras Experiências: {{ curriculo.experiencia }}</p>
     </div>
+    {% if curriculo.estudante == request.user.estudante %}
+        <li><a href="{% url 'curriculo:update' curriculo.id %}">Editar</a></li>
+    {% endif %}
   </div>
-</div>
 {% endblock %}

@@ -13,5 +13,5 @@ urlpatterns = [
     path('empresa_profile/<username>', views.get_empresa_profile, name='empresa_profile'),
     path('inscrito/<int:id>', views.inscrito_add, name='inscrito_add'),
     path('<int:propostas_id>/inscritos', views.inscrito_list, name='inscrito_list'),
-
+    path('inscricoes/<username>', views.propostas_inscrito_list, name='inscricoes'),
 ]

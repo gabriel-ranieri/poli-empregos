@@ -8,8 +8,11 @@ Propostas
 <h2>Todas as Propostas</h2>
 <section>
     <p>Muitos resultados? <a href="{% url 'propostas:search' %}">Buscar Propostas</a></p>
-    {% if request.user.is_empresa == True %} 
+    {% if request.user.is_empresa %} 
         <a href="{% url 'propostas:empresa_profile' user.username %}">Minhas Propostas</a>
+    {% endif %}
+    {% if request.user.is_estudante %} 
+        <a href="{% url 'propostas:inscricoes' user.username %}">Minhas Inscrições</a>
     {% endif %}
 </section>
 {% if propostas_list %}
