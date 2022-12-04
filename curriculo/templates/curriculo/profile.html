@@ -17,7 +17,7 @@
         <p><b>Bio:</b></p>
         {% endif %}
 
-        <p class="contato"><b>Contato:</b> {{ request.user.email }}</p>
+        <p class="contato"><b>Contato:</b> {{ curriculo.estudante.user.email }}</p>
         <div class="edit-profile">
           {% if curriculo.curso %}
           <p class="card-text"><b>Curso:</b> {{ curriculo.curso }}</p>

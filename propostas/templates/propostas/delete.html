@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %} Deletar Proposta {% endblock %} | Poli-Empregos
 {% block content %}
 <form action="{% url 'propostas:delete' propostas.id %}" method="post">
     {% csrf_token %}

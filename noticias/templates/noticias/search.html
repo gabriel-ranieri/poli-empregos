@@ -21,8 +21,8 @@ Buscar notícia
 <section class="lista-de-cards">
     {% for noticia in noticia_list %}
     <article class="card">
-        <img src="{{ noticia.poster_url }}" alt="Poster da Notícia {{ noticia.name}}">
-        <p>{{ noticia.name }} ({{ noticia.release_date }})</p>
+        <img src="{{ noticia.poster_url }}" alt="Poster da Notícia {{ noticia.name}}" width="180" height="180">
+        <a href="{% url 'noticias:detail' noticia.id %}">{{ noticia.name }}</a>
     </article>
     {% endfor %}
 </section>
