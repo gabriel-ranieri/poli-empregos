@@ -1,11 +1,18 @@
-<html>
-<head>
-    <title>
-        Nova conta
-    </title>
-</head>
-<body>
-    <button type=""class="btn btn-danger"><a href="{% url 'estudante_signup' %}">Registrar-se como Estudante</a></button><br><br>
-    <button type=""class="btn btn-secondary"><a href="{% url 'empresa_signup'%}">Registrar-se como Empresa</a></button>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+Nova Conta
+{% endblock title %}
+{% block content %}
+<center>
+    <center style="text-align: center;border-style: solid;border-width: 8px;border-color: #002292; width:65%;">
+        <p>&nbsp</p>
+        <p>
+            <button type=""class="btn btn-danger"><a href="{% url 'estudante_signup' %}" style="color:white">Registrar-se como Estudante</a></button><br><br>
+            <button type=""class="btn btn-secondary"><a href="{% url 'empresa_signup'%}" style="color:white">Registrar-se como Empresa</a></button>
+        </p>
+        <p>&nbsp</p>
+    </center>
+</center>
+
+{% endblock content %}

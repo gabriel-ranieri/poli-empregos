@@ -1,5 +1,10 @@
-<h1>Login de Usuário</h1>
+{% extends 'base.html' %}
 
+{% block title %}
+Login de Usuário
+{% endblock title %}
+
+{% block content %}
 {% if form.errors %}
 <p>Sua senha e nome de usuário não correspondem. Tente novamente.</p>
 {% endif %}
@@ -12,11 +17,20 @@
 {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p}}
-    <button type="submit" value="login">Entrar</button>
-    <input type="hidden" name="next" value="{{ next }}">
-</form>
+<center>
+    <center style="text-align: center;border-style: solid;border-width: 8px;border-color: #002292; width:65%;">
+        <p>
+            <center>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    <button type="submit" value="login">Entrar</button>
+                    <input type="hidden" name="next" value="{{ next }}">
+                </form>
+            </center>
+        </p>
+        <p>Não possui usuário? <a href="{% url 'signup' %}">Cadastre-se</a></p>
+    </center>
+</center>
 
-<p>Não possui usuário? <a href="{% url 'signup' %}">Cadastre-se</a></p>
+{% endblock content %}

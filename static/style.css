@@ -1,6 +1,6 @@
 :root {
 --primary-color: #000000;
---secondary-color: #118bee;
+--secondary-color: #002292;
 --tertiary-color: #f44d27;
 --secondary-color-light: #30b2ff;
 --tertiary-color-light: #ff6d28;
@@ -59,6 +59,13 @@ width: 100%;
 max-width: 1080px;
 padding: 1rem 1rem;
 flex-grow: 1;
+
+/* text-align: center;
+border-style: solid;
+border-width: 8px;
+border-color: #002292; */
+
+
 }
 
 footer#rodape-principal {
@@ -67,6 +74,9 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 1rem 1rem;
+
+color:white;
+background-color: #000120;
 }
 
 .lista-de-cards {

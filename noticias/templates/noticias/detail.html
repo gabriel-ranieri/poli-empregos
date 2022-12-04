@@ -5,13 +5,19 @@
 {% endblock title %}
 
 {% block content %}
-<h2>Detalhes da Notícia {{ noticia.name }} ({{ noticia.release_date | date }})</h2>
+<h2>Detalhes da Notícia: {{ noticia.name }} ({{ noticia.release_date | date }})</h2>
 
 <section class="dados-de-filme">
-    <img src="{{ noticia.poster_url }}" alt="Poster da notícia {{ noticia.name}}">
-    <ul>
-        <li>Nome: {{ noticia.name }}</li>
-        <li>Data de publicação: {{ noticia.release_date | date }} </li>
+    <center>
+        <img src="{{ noticia.poster_url }}" alt="Poster da notícia {{ noticia.name}}">
+    </center>
+
+    <center style="font-weight: bold;">
+        Título da Notícia: {{ noticia.name }}
+    </center>
+    <p align="justify"> {{ noticia.descricao }}</p>
+    <p align="right"><i>Data de publicação: {{ noticia.release_date | date }}</i></p>
+    <ul>                
         {% if not request.user.is_estudante %}
         {% if not request.user.is_empresa %}
             <li><a href="{% url 'noticias:update' noticia.id %}">Editar</a></li>
@@ -19,7 +25,6 @@
         {% endif %}
         {% endif %}
     </ul>
-    <p> {{ noticia.descricao }}</p>
 </section>
 
 <hr>
@@ -35,17 +40,15 @@
                     <blockquote>
                         "{{ comment.text }}"
                     </blockquote>
-                    <figcaption>—{{ comment.author }}
+                    <figcaption>Autor: {{ comment.author }}
                 </figure>
             {% endfor %}
         {% else %}
             <p>Ainda não existe nenhum comentário para esta notícia.</p>
         {% endif %}
     </ul>
-
-    <hr>
-
     <a href="{% url 'noticias:comment' noticia.pk %}"><button>Faça seu comentário</button></a>
+    <hr>
 </section>
 
 {% endblock content %}
