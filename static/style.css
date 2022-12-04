@@ -51,6 +51,7 @@ flex-direction: column;
 nav#navegacao-principal li {
 display: inline-block;
 padding: 10px;
+max-width:100%;
 }
 
 main#conteiner-principal {
