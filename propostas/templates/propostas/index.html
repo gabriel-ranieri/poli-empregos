@@ -16,9 +16,13 @@
 <section class="lista-de-cards">
     {% for propostas in propostas_list %}
     <article class="card" style="border: 5px; border-style: solid ;color: #002292; border-color: #002292">
-        <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
-            alt="Poster da Proposta {{ propostas.name}}"></a>
-        <p align="center"><b>{{ propostas.name }}</b></p>
+        <div>
+            <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
+                alt="Poster da Proposta {{ propostas.name}}"></a>
+        </div>
+        <div>
+            <p align="center"><b>{{ propostas.name }}</b></p>
+        </div>
     </article>
     {% endfor %}
 </section>
