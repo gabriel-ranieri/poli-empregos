@@ -91,13 +91,13 @@ background-color: #000120;
 
 .lista-de-cards {
 display: flex;
+justify-content: center;
+align-items: center;
 flex-wrap: wrap;
 }
 
 .lista-de-cards-noticias {
 display: flex;
-flex-direction: column;
-justify-content: center;
 flex-wrap: wrap;
 }
 
@@ -339,6 +339,16 @@ border: 2px solid var(--secondary-color-light);
     display: flex;
     flex-direction: column;
     width: 100%;
+}
 
+.proposta-list-top{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
 
+.proposta-edit{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
 }

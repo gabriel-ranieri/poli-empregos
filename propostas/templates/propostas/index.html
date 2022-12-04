@@ -1,18 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Propostas
-{% endblock title %}
-
 {% block content %}
-<h2 align="center" style="color:#002292">Todas as Propostas</h2>
-<section>
-    <p>Muitos resultados? <a href="{% url 'propostas:search' %}">Buscar Propostas</a></p>
+<br>
+<section class="curriculo-list-top">
+    <a class='button' href="{% url 'propostas:search' %}">Buscar Propostas</a>
+    <br>
     {% if request.user.is_empresa %} 
-        <a href="{% url 'propostas:empresa_profile' user.username %}">Minhas Propostas</a>
+        <a class='button' href="{% url 'propostas:empresa_profile' user.username %}">Minhas Propostas</a>
     {% endif %}
     {% if request.user.is_estudante %} 
-        <a href="{% url 'propostas:inscricoes' user.username %}">Minhas Inscrições</a>
+        <a class='button' href="{% url 'propostas:inscricoes' user.username %}">Minhas Inscrições</a>
     {% endif %}
 </section>
 {% if propostas_list %}

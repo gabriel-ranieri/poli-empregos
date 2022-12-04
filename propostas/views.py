@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .temp_data import propostas_data
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
@@ -62,7 +61,7 @@ def create_propostas(request):
                        empresa = propostas_empresa,
                       descricao=propostas_descricao,
                       logo_proposta=propostas_logo_proposta,
-                      n_vagas=propostas_n_vagas)#,
+                      n_vagas=int(propostas_n_vagas))#,
                       #data_pub=propostas_data_pub)
         propostas.save()
         return HttpResponseRedirect(

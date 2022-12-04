@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<hr>
+<br>
+<h2> Minhas inscrições</h2>
+<br>
 {% if p_list %}
 <section class="lista-de-cards">
     {% for propostas in p_list %}
     <article class="card">
-        <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
-            alt="Poster da Proposta {{ propostas.name}}"></a>
-        <p>{{ propostas.name }}</p>
+            <img src="{{ propostas.logo_proposta }}"
+            alt="Poster da Proposta {{ propostas.name}}">
+        <a href="{% url 'propostas:detail' propostas.id %}">{{ propostas.name }}</a>
     </article>
     {% endfor %}
 </section>

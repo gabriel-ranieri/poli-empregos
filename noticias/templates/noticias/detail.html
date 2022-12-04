@@ -5,23 +5,27 @@
 {% endblock title %}
 
 {% block content %}
-<h2>Detalhes da Notícia: {{ noticia.name }} ({{ noticia.release_date | date }})</h2>
+<hr>
+<h2>{{ noticia.name }} ({{ noticia.release_date | date }})</h2>
 
 <section class="dados-de-filme">
     <center>
-        <img src="{{ noticia.poster_url }}" alt="Poster da notícia {{ noticia.name}}" width="30%">
+        <img src="{{ noticia.poster_url }}" alt="Poster da notícia {{ noticia.name}}" height="300px" width="300px">
     </center>
 
     <center style="font-weight: bold;">
-        Título da Notícia: {{ noticia.name }}
+        {{ noticia.name }}
     </center>
     <p align="justify"> {{ noticia.descricao }}</p>
     <p align="right"><i>Data de publicação: {{ noticia.release_date | date }}</i></p>
     <ul>                
         {% if not request.user.is_estudante %}
         {% if not request.user.is_empresa %}
-            <li><a href="{% url 'noticias:update' noticia.id %}">Editar</a></li>
-            <li><a href="{% url 'noticias:delete' noticia.id %}">Apagar</a></li>
+        <div class="proposta-list-top">
+            <a class = 'button' href="{% url 'noticias:update' noticia.id %}">Editar</a>
+            <a class = 'button' href="{% url 'noticias:delete' noticia.id %}">Apagar</a>
+        </div>
+           
         {% endif %}
         {% endif %}
     </ul>
@@ -42,13 +46,13 @@
                     </blockquote>
                     <figcaption>Autor: {{ comment.author }}
                 </figure>
+                <hr>
             {% endfor %}
         {% else %}
             <p>Ainda não existe nenhum comentário para esta notícia.</p>
         {% endif %}
     </ul>
     <a href="{% url 'noticias:comment' noticia.pk %}"><button>Faça seu comentário</button></a>
-    <hr>
 </section>
 
 {% endblock content %}

@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from .temp_data import noticia_data
 from django.shortcuts import render, get_object_or_404
 from .models import Noticia
 from django.urls import reverse

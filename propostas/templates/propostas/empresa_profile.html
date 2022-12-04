@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>Gostaria de criar uma nova proposta? <a href="{% url 'propostas:create' %}">Adicionar Nova Proposta</a></p>
+<hr>
+<br>
+<h2>Minhas Propostas</h2>
+<br>
+<a class='button' href="{% url 'propostas:create' %}">Nova Proposta</a>
+
 {% if propostas_list %}
 <section class="lista-de-cards">
     {% for propostas in propostas_list %}

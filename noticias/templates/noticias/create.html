@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Criar notícia
-{% endblock title %}
 
 {% block content %}
+<hr>
 <h2>Inserir Nova Notícia</h2>
 
 <form method="POST" action="{% url 'noticias:create' %}">

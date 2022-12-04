@@ -3,9 +3,12 @@
 {% block content %}
 
 {% for curriculo in i_list %}
+<hr>
+<br>
 <h2>
-    
+    Inscritos em {{propostas.name}}
 </h2>
+<br>
     <article class="curriculo-card">
         {% if curriculo.foto %}
         <img class= 'retrato' src="{{ curriculo.foto }}" alt="Nome de Estudante {{ curriculo.estudante}}" width="180" height="180">
