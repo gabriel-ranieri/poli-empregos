@@ -16,19 +16,20 @@
 
 <body>
     <header id="cabecalho-principal">
-        <a href="{% url 'index' %}"> <img src="{% static 'logo.png' %}">
-        <a href="{% url 'index' %}">
-            <p>Poli-Empregos</p>
+        <a href="{% url 'index' %}"> <img src="{% static 'logo.png' %}" height="100" width="120">
+<!--         <a href="{% url 'index' %}">
+            <p>Poli-Empregos</p> -->
         </a>
+        <h1 style="color:#002292">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Poli-Empregos</h1>
         <nav id="navegacao-principal">
             <ul>
                 {% if user.is_authenticated %}
                     <li> Logado com {{ user.username }} </li>
                     <li><a href="{% url 'logout' %}">Log out</a></li>
-                    <li><a href="{% url 'about' %}">Sobre</a></li>
+<!--                     <li><a href="{% url 'about' %}">Sobre</a></li>
                     <li><a href="{% url 'noticias:index' %}">Notícias</a></li>
                     <li><a href="{% url 'propostas:index' %}">Propostas</a></li>
-                    <a href="{% url 'curriculo:list'  %}">Curriculos</a>
+                    <li><a href="{% url 'curriculo:list'  %}">Currículos</a></li> -->
 
                 {% else %}
                     <li><a href="{% url 'login' %}">Log in</a></li>
@@ -36,9 +37,23 @@
                
             </ul>
         </nav>
-
     </header>
     <main id="conteiner-principal">
+        {% if user.is_authenticated %}
+            <center>
+                <p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiNDpcJBwQ2cpUltiULwT2RsR-yuWLF6Krp5rF4DAcM-QL3BGvB4zzIKsiGbrrbgHEOO8&usqp=CAU" height="50" width="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr6gsIZqwi-f7DYI0PcNAEbmzWhPNiFrpcRrFQ053YLs5vYGdChiVeZMMxEtZvNI78rSM&usqp=CAU" height="50" width="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="data:image/png;base64,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" height="50" width="50"></a>
+                </p>   
+                <p>
+                    <a href="{% url 'propostas:index' %}" style="font-weight: bold">Propostas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    <a href="{% url 'noticias:index' %}" style="font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Notícias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    <a href="{% url 'curriculo:list'  %}" style="font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Currículos</a>
+                </p>       
+                
+            </center>
+        {% endif %}
         {% block content %}
         {% endblock content %}
     </main>

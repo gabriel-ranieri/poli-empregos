@@ -8,9 +8,11 @@
 <h2>{{ propostas.name }}</h2>
 
 <section class="dados-de-proposta">
-    <img src="{{ propostas.logo_proposta }}" alt="Poster da proposta {{ propostas.name}}">
+    <center>
+        <img src="{{ propostas.logo_proposta }}" alt="Poster da proposta {{ propostas.name}}">
+    </center>
     <ul>
-        <li>Descrição da Proposta: {{ propostas.descricao }} </li>
+        <li align="justify">Descrição da Proposta: {{ propostas.descricao }} </li>
         <li>Número de vagas: {{ propostas.n_vagas }} </li>
         <li>Data da Publicação: {{ propostas.data_pub }} </li>
         {% if propostas.empresa == request.user.empresa %}

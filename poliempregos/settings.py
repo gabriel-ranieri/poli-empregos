@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'staticpages.apps.StaticpagesConfig',
     'propostas.apps.PropostasConfig',
     'noticias.apps.NoticiasConfig',
-    'django_cpf_cnpj',
     'curriculo.apps.CurriculoConfig'
 ]
 
