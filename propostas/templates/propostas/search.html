@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Busca de Propostas por Nome</h2>
-<form action="{% url 'propostas:search' %}">
-    <p>
-        <label for="id_query">Título:</label>
-        <input type="text" name="query" id="id_query" />
-    </p>
-    <button type="submit">Buscar</button>
-</form>
-
+<center>
+    <div align="center" style="border: 5px; border-style: solid ; border-color: #002292; width:60%;">
+        <h2>Busca de Propostas por Nome</h2>
+        <form action="{% url 'propostas:search' %}">
+            <p>
+                <label for="id_query">Título:</label>
+                <input type="text" name="query" id="id_query" />
+            </p>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+</center>
 
 <h2>Resultado da Busca</h2>
 {% if propostas_list %}

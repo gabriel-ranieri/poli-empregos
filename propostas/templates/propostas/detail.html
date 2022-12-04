@@ -6,17 +6,18 @@
 
 {% block content %}
 <h2 align="center">{{ propostas.name }}</h2>
-
+<br>
 <section class="dados-de-filme">
     <p align="center">
         <center>
             <img align="center" src="{{ propostas.logo_proposta }}" alt="Poster da proposta {{ propostas.name}}" height="200px" width="500px">
         </center>
     </p>
+    <br>
     <p>
         <ul style="list-style-type: none">
             <li align="justify">Descrição da Proposta: {{ propostas.descricao }} </li>
-            <li><b>Número de vagas:</b> {{ propostas.n_vagas }} </li>
+            <li><b align="center">Número de vagas:</b> {{ propostas.n_vagas }} </li>
             <li align="right"><i>Data: {{ propostas.data_pub }}</i></li>
             {% if propostas.empresa == request.user.empresa %}
                 <li><a href="{% url 'propostas:update' propostas.id %}">Editar</a></li>
@@ -29,9 +30,18 @@
 </section>
 {% if request.user.is_estudante %}
     {% if ins %}
-        <a href="{% url 'propostas:inscrito_add' propostas.id %}">Desinscrever-se</a>
+        <center>
+            <button>
+                <a href="{% url 'propostas:inscrito_add' propostas.id %}" style="color:white">Desinscrever-se</a>
+            </button> 
+        </center>
+       
     {% else %}
-        <a href="{% url 'propostas:inscrito_add' propostas.id %}">Inscrever-se</a>
+    <center>
+        <button>
+            <a href="{% url 'propostas:inscrito_add' propostas.id %}" style="color:white">Inscrever-se</a> 
+        </button> 
+    </center>
     {% endif %}
 {% endif %}
 <hr>
