@@ -19,13 +19,23 @@ Notícias
 
 {% if noticia_list %}
 
-<section class="lista-de-cards">
+<section class="lista-de-cards-noticias">
     {% for noticia in noticia_list %}
-    <article class="card">
-        <a href="{% url 'noticias:detail' noticia.id %}"><img src="{{ noticia.poster_url }}"
-                alt="Poster da noticia {{ noticia.name}}"></a>
-        <p>{{ noticia.name }} ({{ noticia.release_date | date}})</p>
-    </article>
+    <br>
+    <center>
+        <article class="card-noticias">
+            <div align="left">
+                <a href="{% url 'noticias:detail' noticia.id %}"><img src="{{ noticia.poster_url }}" alt="Poster da noticia {{ noticia.name}}" style="max-width: 100px;
+                    max-width: 100px; max-height: 100px;"></a>
+            </div>
+            <div>
+                <b>{{ noticia.name }} ({{ noticia.release_date | date}})</b>
+                <p>{{ noticia.descricao }}</p>
+            </div>
+        </article>
+    </center>
+    <br>
+
     {% endfor %}
 </section>
 

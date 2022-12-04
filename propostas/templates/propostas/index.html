@@ -5,7 +5,7 @@ Propostas
 {% endblock title %}
 
 {% block content %}
-<h2>Todas as Propostas</h2>
+<h2 align="center" style="color:#002292">Todas as Propostas</h2>
 <section>
     <p>Muitos resultados? <a href="{% url 'propostas:search' %}">Buscar Propostas</a></p>
     {% if request.user.is_empresa %} 
@@ -18,10 +18,10 @@ Propostas
 {% if propostas_list %}
 <section class="lista-de-cards">
     {% for propostas in propostas_list %}
-    <article class="card">
+    <article class="card" style="border: 5px; border-style: solid ;color: #002292; border-color: #002292">
         <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
             alt="Poster da Proposta {{ propostas.name}}"></a>
-        <p>{{ propostas.name }}</p>
+        <p align="center"><b>{{ propostas.name }}</b></p>
     </article>
     {% endfor %}
 </section>
