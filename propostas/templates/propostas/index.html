@@ -17,7 +17,7 @@
     {% for propostas in propostas_list %}
     <article class="card" style="border: 5px; border-style: solid ;color: #002292; border-color: #002292">
         <div>
-            <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
+            <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}" height="150px" width="150px"
                 alt="Poster da Proposta {{ propostas.name}}"></a>
         </div>
         <div>
