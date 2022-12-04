@@ -3,12 +3,12 @@
 {% block content %}
 
 {% if curriculo_list %}
-
-<p>Muitos resultados? <a href="{% url 'curriculo:search' %}">Buscar Currículo</a></p>
-
-{% if request.user.is_estudante == True %} 
-<a href="{% url 'curriculo:user_profile' user.username %}">Meu Curriculo</a>
-{% endif %}
+<div class="curriculo-list-top">
+    <a class= 'button' href="{% url 'curriculo:search' %}">Buscar Currículo</a>
+    {% if request.user.is_estudante == True %} 
+    <a class= 'button' href="{% url 'curriculo:user_profile' user.username %}">Meu Curriculo</a>
+    {% endif %}
+</div>
 
 <section class="lista-de-cards">
 

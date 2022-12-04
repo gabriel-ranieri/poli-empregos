@@ -2,18 +2,22 @@
 
 
 {% block content %}
+<div class="formulario-top">
+    <h2>Atualizar Currículo</h2>
+</div>
+<div class="formulario">
+    <div class="formulario" style="text-align: center;border-style: solid;border-width: 8px;border-color: #002292; width:65%;">
+        <p>
+            <div class="formulario">
+                <form method="POST" accept-charset="utf-8">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit">Atualizar</button>
+                    
+                </form>
+            </div>
+        </p>
+    </dv>
+</div>
 
-<h2>Atualizar Currículo</h2>
-
-<form method="POST" action="">
-
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <button type="submit">Atualizar</button>
-
-</form>
-
-
-{% endblock content %}
+{% endblock %}

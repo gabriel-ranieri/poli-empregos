@@ -1,29 +1,54 @@
 {% extends 'base.html' %}
-{% load static %}
-
-{% block head_title %}{{ curriculo.estudante }} | Django Blog{% endblock head_title %}
 
 {% block content %}
-  <div class="row">
-    {% if curriculo.foto %}
-      <img class="card-img-top col-sm-3 col-4 my-3" src="{{ curriculo.foto }}" alt="{{ curriculo.estudante }}" width="300" height="300">
-    {% else %}
-      <p>Sem foto</p>
-    {% endif %}
-    <div class="card-body col-9">
-      <h2 class="card-title my-3">{{ curriculo.estudante.name }}</h2>
-      <p class="card-text">Bio: {{ curriculo.bio }}</p>
-      <hr>
-      <p class="card-text">Curso: {{ curriculo.curso }}</p>
-      <hr>
-      <p class="card-text">Experiência Profissional: {{ curriculo.profissional }}</p>
-      <hr>
-      <p class="card-text">Experiência Acadêmica: {{ curriculo.academico }}</p>
-      <hr>
-      <p class="card-text">Outras Experiências: {{ curriculo.experiencia }}</p>
+<br>
+  <div class = "profile">
+    <div class = "profile-top">
+      {% if curriculo.foto %}
+      <img class="retrato" src="{{ curriculo.foto }}" alt="{{ curriculo.estudante }}" width="350" height="350">
+      {% else %}
+      <p class="sem-foto">Sem foto</p>
+      {% endif %}
+      <div class = "profile-topright">
+        <h2>{{ curriculo.estudante.name }}</h2>
+        {% if curriculo.bio %}
+        <p class="profile-bio"><b>Bio:</b> {{ curriculo.bio }}</p>
+        {% else %}
+        <p><b>Bio:</b></p>
+        {% endif %}
+
+        <p class="contato"><b>Contato:</b> {{ request.user.email }}</p>
+        <div class="edit-profile">
+          {% if curriculo.curso %}
+          <p class="card-text"><b>Curso:</b> {{ curriculo.curso }}</p>
+          {% else %}
+          <p class="card-text"><b>Curso:</b></p>
+          {% endif %}
+          {% if curriculo.estudante == request.user.estudante %}
+          <a class = "button" href="{% url 'curriculo:update' curriculo.id %}">Editar</a>
+         {% endif %}
+        </div>
+      </div>
     </div>
-    {% if curriculo.estudante == request.user.estudante %}
-        <li><a href="{% url 'curriculo:update' curriculo.id %}">Editar</a></li>
-    {% endif %}
+    <hr>
+    <div class="card-body col-9">
+      {% if curriculo.profissional %}
+      <p class="card-text"><b>Experiência Profissional:</b> {{ curriculo.profissional }}</p>
+      {% else %}
+      <p class="card-text"><b>Experiência Profissional:</b></p>
+      {% endif %}
+      <hr>
+      {% if curriculo.profissional %}
+      <p class="card-text"><b>Experiência Acadêmica:</b> {{ curriculo.profissional }}</p>
+      {% else %}
+      <p class="card-text"><b>Experiência Acadêmica:</b></p>
+      {% endif %}
+      <hr>
+      {% if curriculo.profissional %}
+      <p class="card-text"><b>Outras Experiências:</b> {{ curriculo.profissional }}</p>
+      {% else %}
+      <p class="card-text"><b>Outras Experiências:</b></p>
+      {% endif %}
+    </div>
   </div>
 {% endblock %}

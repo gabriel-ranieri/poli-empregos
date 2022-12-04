@@ -2,8 +2,8 @@
 
 
 {% block content %}
-
-<h2>Busca de Filmes por Nome</h2>
+<div class="pesquisa-curriculo">
+    <h2>Pesquisa de Currículo por Nome</h2>
 
 <form action="{% url 'curriculo:search' %}">
 
@@ -21,10 +21,10 @@
 
 
 
-<h2>Resultado da Busca</h2>
+
 
 {% if curriculo_list %}
-
+<h2>Resultado da Busca</h2>
 <section class="lista-de-cards">
 
     {% for curriculo in curriculo_list %}
@@ -42,10 +42,9 @@
 </section>
 
 {% else %}
-
-<p>Não foi encontrado nenhum filme para a busca.</p>
+<p>Não foi encontrado nenhum currículo para a busca.</p>
 
 {% endif %}
 
-
+</div>
 {% endblock content %}
