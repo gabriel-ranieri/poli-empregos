@@ -171,12 +171,13 @@ text-decoration: underline;
 width: 100%;
 display: flex;
 flex-wrap: wrap;
-justify-content: left;
+justify-content: justify;
 padding: 1rem 0;
 }
 
 .dados-de-proposta img {
 width: 285px;
+justify-content: center;
 box-shadow: 2px 2px 10px var(--color-shadow);
 }
 

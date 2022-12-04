@@ -5,22 +5,27 @@
 {% endblock title %}
 
 {% block content %}
-<h2>{{ propostas.name }}</h2>
+<h2 align="center">{{ propostas.name }}</h2>
 
-<section class="dados-de-proposta">
-    <center>
-        <img src="{{ propostas.logo_proposta }}" alt="Poster da proposta {{ propostas.name}}">
-    </center>
-    <ul>
-        <li align="justify">Descrição da Proposta: {{ propostas.descricao }} </li>
-        <li>Número de vagas: {{ propostas.n_vagas }} </li>
-        <li>Data da Publicação: {{ propostas.data_pub }} </li>
-        {% if propostas.empresa == request.user.empresa %}
-            <li><a href="{% url 'propostas:update' propostas.id %}">Editar</a></li>
-            <li><a href="{% url 'propostas:delete' propostas.id %}">Apagar</a></li>
-            <li><a href="{% url 'propostas:inscrito_list' propostas.id %}">Inscritos</a></li>
-        {% endif %} 
-    </ul>
+<section class="dados-de-filme">
+    <p align="center">
+        <center>
+            <img align="center" src="{{ propostas.logo_proposta }}" alt="Poster da proposta {{ propostas.name}}" height="200px" width="500px">
+        </center>
+    </p>
+    <p>
+        <ul style="list-style-type: none">
+            <li align="justify">Descrição da Proposta: {{ propostas.descricao }} </li>
+            <li><b>Número de vagas:</b> {{ propostas.n_vagas }} </li>
+            <li align="right"><i>Data: {{ propostas.data_pub }}</i></li>
+            {% if propostas.empresa == request.user.empresa %}
+                <li><a href="{% url 'propostas:update' propostas.id %}">Editar</a></li>
+                <li><a href="{% url 'propostas:delete' propostas.id %}">Apagar</a></li>
+                <li><a href="{% url 'propostas:inscrito_list' propostas.id %}">Inscritos</a></li>
+            {% endif %} 
+        </ul>
+    </p>
+
 </section>
 {% if request.user.is_estudante %}
     {% if ins %}

@@ -21,7 +21,7 @@ Propostas
     <article class="card">
         <a href="{% url 'propostas:detail' forloop.counter %}"><img src="{{ propostas.logo_proposta }}"
             alt="Poster da Proposta {{ propostas.name}}"></a>
-        <p>{{ propostas.name }}</p>
+        <p align="center"><b>{{ propostas.name }}</b></p>
     </article>
     {% endfor %}
 </section>
