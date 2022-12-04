@@ -15,13 +15,15 @@ from curriculo.models import Curriculo
 @login_required
 def detail_propostas(request, propostas_id):
     propostas = get_object_or_404(Propostas, pk=propostas_id)
+    propostas_list = Propostas.objects.filter(empresa = propostas.empresa).exclude(id = propostas_id)
+    #propostas_list = Propostas.objects.filter(empresa = p.empresa)
     ins = bool
-    context = {'propostas': propostas, 'ins': ins}
+    context = {'propostas': propostas, 'ins': ins, 'propostas_list': propostas_list}
     if request.user.is_estudante:
         curriculo = request.user.estudante.curriculo
         if propostas.inscrito.filter(id = request.user.estudante.curriculo.id).exists():
             ins = True
-        context = {'propostas': propostas, 'ins': ins, 'curriculo':curriculo}
+        context = {'propostas': propostas, 'ins': ins, 'curriculo':curriculo, 'propostas_list': propostas_list}
     return render(request, 'propostas/detail.html', context)
 
 @login_required

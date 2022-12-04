@@ -15,10 +15,14 @@
     {% for curriculo in curriculo_list %}
 
     <article class="curriculo-card">
+        {% if curriculo.foto %}
         <img class= 'retrato' src="{{ curriculo.foto }}" alt="Nome de Estudante {{ curriculo.estudante}}" width="180" height="180">
+        {% endif %}
         <div class="curriculo-text"> 
             <a class = 'curriculo-name' href="{% url 'curriculo:profile' curriculo.id %}">{{ curriculo.estudante.name }}</a>
+            {% if curriculo.bio %}
             <p class = 'curriculo-bio'>{{ curriculo.bio }}</p>
+            {% endif %}
         </div>
     </article>
 
