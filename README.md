@@ -2,7 +2,7 @@
 
 Este é um projeto de autoria de alunos de engenharia mecatrônica da Escola Politécnica da USP para a disciplina Sistemas de Informação de 2022.
 
-##Autores:
+## Autores:
 * Gabriel Ranieri Vaz de Lima
 * Caio Felipe dos Santos Oliveira
 * Vicente Valerio Brusamolin
